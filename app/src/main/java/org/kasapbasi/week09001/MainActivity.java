@@ -1,13 +1,16 @@
 package org.kasapbasi.week09001;
-// some of the codes has been taken from tutorilaspoint.com 
+// some of the codes has been taken from tutorilaspoint.com
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,10 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvPhone =(EditText)findViewById(R.id.tvPhoneNumber);
         tvSmsMessage = (EditText) findViewById(R.id.tvSmsMessage);
+
 
 
     }
